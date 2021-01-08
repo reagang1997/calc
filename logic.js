@@ -8,25 +8,24 @@ $(document).ready(function () {
 
     // Your code here...
     var $number = $(".number");
+    var $secondDiv = $("#second-number");
+    var $firstDiv = $("#first-number");
     $number.click(function () {
         if (operatorClicked) {
             //populate secondNumber
-            var $secondDiv = $("#second-number");
             secondNumber += this.value;
             $secondDiv.text(secondNumber);
         }
         else {
-            var $firstDiv = $("#first-number");
             firstNumber += this.value;
             $firstDiv.text(firstNumber);
         }
     })
 
     var $operator = $(".operator");
+    var $operatorDiv = $("#operator");
     $operator.click(function () {
         operatorClicked = true;
-        var $operatorDiv = $("#operator");
-
         operator = this.value;
         console.log(operator);
 
@@ -35,10 +34,20 @@ $(document).ready(function () {
 
     var $clear = $(".clear");
     $clear.click(function(){
-        
+        $firstDiv.empty();
+        $secondDiv.empty();
+        $operatorDiv.empty();
+        $resultDiv.empty();
+
+        firstNumber = "";
+        secondNumber = "";
+        operator = "";
+        result = 0;
+        operatorClicked = false;
     });
 
     var $equal = $(".equal");
+    var $resultDiv = $("#result");
     $equal.click(function(){
         firstNumber = parseInt(firstNumber);
         secondNumber = parseInt(secondNumber);
@@ -58,6 +67,7 @@ $(document).ready(function () {
         else{
             result = firstNumber ** secondNumber;
         }
+        $resultDiv.text(result);
     });
 
 });
